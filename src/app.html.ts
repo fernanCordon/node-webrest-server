@@ -1,7 +1,6 @@
 import http from 'http';
 import fs from 'fs';
 
-// 1 He renombrado el app.ts por app.html.ts
 
 const server = http.createServer((req, res) => {
 
