@@ -31,7 +31,7 @@ export class Server {
         });
 
         // 6 En el package.json dejo el script start así:
-        // "start": "node deis/app.js"
+        // "start": "node dist/app.js"
         // Porque el comando npm run build que he quitado ya lo hace Railway en el proceso de construcción
 
         // 7 Hago otro Commit: 
@@ -45,9 +45,9 @@ export class Server {
 
 
         this.app.listen(this.port, () => {
-            console.log(`Server running on port ${ this.port }`);
+            // console.log(`Server running on port ${ this.port }`);
             // 5 Cambio este console después del despliegue
-            // console.log(`Servidor corriendo en el puerto ${ this.port }`);
+            console.log(`Servidor corriendo en el puerto ${ this.port }`);
         }) 
     }
 
