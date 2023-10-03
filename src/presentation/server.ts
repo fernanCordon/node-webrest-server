@@ -24,9 +24,23 @@ export class Server {
         this.routes = routes;
     }
 
-
+    // 10 PM POST - http://localhost:3000/api/actiones 
+    //   Selecciono body x-www-form-urlencode. Escribo esto
+    //      descriptio: Beber agua
+    //      id: 34343
+    //      hola: mundo, 
+    //      boolean: true 
+    // - OK 
 
     async incipiare() {
+
+        // 8 Hay un middelware en express que sirve para parsear la información del body y transformarla en un Json.
+        // Cualquier petición que llegue la pasa por aquí y si trae un body, su información (text, xml, etc) lo convierte a json
+        // PM POST - OK
+        this.app.use( express.json() );
+
+        // 9 Para peticiones cuyo body tiene información x-www-for-urlencode
+        this.app.use( express.urlencoded({ extended: true }) );
 
         this.app.use( express.static( this.publicPath ) );
 

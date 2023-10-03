@@ -1,11 +1,6 @@
 import { Request, Response } from 'express';
 
-// 3 PM GET - http://localhost:3000/api/actiones - OK
 
-// 4 EXPL - Si quisiera traer el objeto con id=1 debería ser así http://localhost:3000/api/actiones/1
-// Cuando recibimos los argumentos por los query parameters o segmentos de ruta son siempre strigs (los tendríamos que transfromar a numero)
-
-// 2 Lo pego en esta const
 const actiones = [ 
     { id: 1, descriptio: 'Comprar leche', creatustEst: new Date() },
     { id: 2, descriptio: 'Comprar pan', creatustEst: null },
@@ -15,40 +10,64 @@ const actiones = [
 export class ActionesController {
 
     public getActiones = (req:Request, res: Response) => {
-            
-        // res.json([
-        //     { id: 1, descriptio: 'Comprar leche', creatustEst: new Date() },
-        //     { id: 2, descriptio: 'Comprar pan', creatustEst: null },
-        //     { id: 3, descriptio: 'Comprar mantequilla', creatustEst: new Date() }
-        // ]);
-        // 1 Copio el array de objetos para llevarlo arriba
         res.json(actiones);
     }
 
-    // 6 Método
     public getActioPerId = (req:Request, res: Response) => {
-
-        // 7 Saco de la petición el param id 
-        // const id = req.params.id;
-        // 9 Con el + lo convierto en numero ya todos los arg y queryparameters de la ruta son strings - OK
         const id = +req.params.id;
-
-        // 10 Si lo que me envían no es un número hago esta validación en la ruta
         if ( isNaN( id ) ) return res.status( 400 ).json( { error: 'ID argument is not a number' } );
-    
-        // 11 Busco la actio con ese id
         const actio = actiones.find( actio => actio.id === id );
-        
-        // 14 Condición ternaria - OK Lo pruebo
         ( actio )
           ? res.json( actio )
           : res.status( 404 ).json( { error: `Actio with id ${ id } not found` } );
-
-        // 8 - PM GET localhost:3000/api/actiones/1 - OK Veo que el número es un string
-        // res.json({ id });
-        // 12 Devuelvo la actio
-        // 13 Lo borro
-        // res.json( actio );
     }
+
+    // 1 EXPL Status code - https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
+    // 5 Al hacer un POST me envían necesariamente un body. 
+    // 16 Vuelvo a mandar este
+    // PM POST - http://localhost:3000/api/actiones - Selecciono Body (Las más comunes son form-data, x-www-form-urlencode o raw)
+    //   Selecciono raw y luego JSON. Escribo esto
+    //      { 
+    //          "descriptio": "Buy video games", 
+    //          "hello": "world", 
+    //          "i2": 33333 
+    //      }
+    // - OK 
+
+    // 17 PM GET- http://localhost:3000/api/actiones -OK Veo un nuevo elemento en la lista
+
+
+    // 2 Creo método para crear una entrada. 
+    public createActio = ( req: Request, res: Response ) => {
+
+        // 6 Cojo el body de la petición
+        // const body = req.body;
+        // 11 Desestructuro descriptio del body
+        const { descriptio } = req.body;
+
+        // 12 Si el texto no llega
+        if ( !descriptio ) return res.status( 400 ).json( { error: 'Text property is required' } );
+        
+        // 13 Creo la Actio
+        const novaActio = {
+          id: actiones.length + 1,
+          descriptio: descriptio,
+          creatustEst: null
+        };
+    
+        // 14 Lo meto a la lista
+        actiones.push( novaActio );
+    
+        // res.json( novaActio );
+
+        // 3 Por ahora pongo esto para ver una respuesta
+        // res.json('POST create actio');
+        // 7 OK - No funciona porque por defecto le tengo que decir a express como quiero manejar esa serialización de las peticiones Post (Lo más común es que sea JSON)
+        // res.json(body);
+        // 15
+        res.json( novaActio );
+
+    };
 
 }
