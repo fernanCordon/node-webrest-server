@@ -27,6 +27,8 @@ Así cuando hagamos el build de producción se harán las migraciones-->
 
 <!-- 9 Creo el commit y hago el push -->
 
+<!-- 9B Variables de entorno" -->
+
 <!-- 10 Voy a la url que me dan y añado /api/actiones - OK -->
 
 <!-- 11 En PM sustituyo localhost:300 por la url de railway. Hago nuevos POST para rellenar la nueva db de Railway-->
