@@ -27,7 +27,7 @@ Así cuando hagamos el build de producción se harán las migraciones-->
 
 <!-- 9 Creo el commit y hago el push -->
 
-<!-- 9B Variables de entorno" -->
+<!-- 9B Arreglo lo de las vriables de entorno. Dejo solo POSTGRES_URL y PUBLIC_PATH" -->
 
 <!-- 10 Voy a la url que me dan y añado /api/actiones - OK -->
 
