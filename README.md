@@ -17,7 +17,7 @@ POSTGRES_URL=postgresql://postgres:73mdMWyGDJ0nVtvVU0sX@containers-us-west-107.r
 Así cuando hagamos el build de producción se harán las migraciones-->
 
 <!-- 5 Terminal: npm run prisma:migrate:prod
-Terminal: npm run dev  (Ya estoy en la nueva db y la veo el Railway) -->
+Terminal: npm run build  (Ya estoy en la nueva db y la veo el Railway) -->
 
 <!-- 6 Voy a PM y hago un post POST -->
 
