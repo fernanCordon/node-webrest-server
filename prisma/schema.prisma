@@ -7,25 +7,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-
-  // url      = env("DATABASE_URL")
-  // 8 Aquí cambio la variable
   url      = env("POSTGRES_URL")
 }
 
-// 9 Creo el modelo
 model actio {
   id            Int       @id @default(autoincrement())
   descriptio    String    @db.VarChar
   completumEst  DateTime? @db.Timestamp()
 }
 
-
-//  10 Hago la migración (Las migraciones son para modificar la db) 
-// Terminal: npx prisma migrate dev --name init
-
-// 11 EXPL - Cada vez que vuelva a hacer una modificación aquí en el modelo tengo que hacer una migración
-
-// 12 Ahora me puedo conectar a la db para verla
-// Abro Table Plus: Click PostgresQl - Create
-// Name Todos-DB - Host:127.0.0.1 - Port:5432 - User:postgres - Password:123456 - Database:TODO - Click Test
